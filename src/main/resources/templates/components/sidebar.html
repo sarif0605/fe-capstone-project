@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar</title>
+</head>
+
+<body>
+    <div th:fragment="sidebar">
+        <!-- ======= Sidebar ======= -->
+        <aside id="sidebar" class="sidebar">
+
+            <ul class="sidebar-nav" id="sidebar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/segment}"
+                        th:classappend="${isActive} != 'segment' ? 'collapsed':''">
+                        <span>Segment</span>
+                    </a>
+                </li><!-- End Dashboard Nav -->
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/materi}"
+                        th:classappend="${isActive} != 'materi' ? 'collapsed':''">
+                        <span>Materi</span>
+                    </a>
+                </li><!-- End Dashboard Nav -->
+                
+                
+                <li class="nav-item" >
+                    <a class="nav-link" th:href="@{/assignment}"
+                     th:classappend="${isActive} != 'assignment' ? 'collapsed':''">
+                        <span>Assignment</span>
+                    </a>
+                </li><!-- End Dashboard Nav -->
+                
+                <li class="nav-item" >
+                    <a class="nav-link" th:href="@{/register}"
+                     th:classappend="${isActive} != 'register' ? 'collapsed':''">
+                        <span>Register</span>
+                    </a>
+                </li><!-- End Dashboard Nav -->
+            </ul>
+        </aside><!-- End Sidebar-->
+    </div>
+</body>
+
+</html>

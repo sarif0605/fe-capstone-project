@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin}">
+
+<head>
+    <title>Materi</title>
+</head>
+
+<body>
+<main id="main" class="main" layout:fragment="main">
+    <!-- Content -->
+    <section class="container">
+        <div class="d-flex justify-content-between align-items-center mt-3 px-3 bg-dark">
+            <h1 class="fw-bold text-center mt-3" style="color: white;">List of Materi</h1>
+            <button
+                    type="button"
+                    class="btn btn-success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#create"
+            >
+                Add Materi
+            </button>
+
+        </div>
+
+        <!-- Table -->
+        <table id="materi-table" class="table mt-3 table-striped table-hover text-center table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th class="col-1 text-center">No</th>
+                <th class="col-1 text-center">Title</th>
+                <th class="col-4 text-center">File Materi</th>
+                <th class="col-2 text-center">Pembuat</th>
+                <th class="col-6 text-center">Action</th>
+            </tr>
+            </thead>
+
+        </table>
+
+        <!-- Modal Detail -->
+        <div class="modal fade" id="detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+             aria-labelledby="detailLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 fw-bold" id="detailLabel">
+                            Detail Materi
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="detail-title" class="form-label fw-bold">Title</label>
+                            <input type="text" id="detail-title" class="form-control" disabled/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="detail-start-date" class="form-label fw-bold">Start-date</label>
+                            <input type="date" id="detail-start-date" class="form-select" readonly/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="detail-end-date" class="form-label fw-bold">end-date</label>
+                            <input type="date" id="detail-end-date" class="form-select" readonly/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="detail-descr" class="form-label fw-bold">Descr</label>
+                            <input type="text" id="detail-descr" class="form-control" disabled/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Create -->
+        <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+             aria-labelledby="createLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 fw-bold" id="createLabel">
+                            Create Materi
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="createMateri" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="create-file" class="form-label fw-bold">File</label>
+                                <input type="file" id="create-file" class="form-control" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="create-student" class="form-label fw-bold">Segment ID</label>
+                                <input type="text" id="create-student" class="form-control" required/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button class="btn btn-success">
+                                Create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Update -->
+        <div class="modal fade" id="update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+             aria-labelledby="updateLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form id="updateForm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 fw-bold" id="updateLabel">
+                                Update Materi
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="text" id="materi-id" class="form-control" hidden readonly/>
+                                <input type="text" id="update-person" class="form-control" hidden readonly/>
+                                <label for="update-title" class="form-label fw-bold">Title</label>
+                                <input type="text" id="update-title" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="update-start-date" class="form-label fw-bold">Start-date</label>
+                                <input type="date" id="update-start-date" class="form-select"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="update-end-date" class="form-label fw-bold">end-date</label>
+                                <input type="date" id="update-end-date" class="form-select"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="update-descr" class="form-label fw-bold">Description</label>
+                                <input type="text" name="" id="update-descr" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button class="btn btn-success">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- JS Local -->
+<div layout:fragment="script">
+    <script th:src="@{/js/Materi.js}"></script>
+</div>
+</body>
+
+</html>

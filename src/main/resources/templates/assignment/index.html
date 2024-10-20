@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin}">
+
+<head>
+    <title>Assignment</title>
+</head>
+
+<body>
+    <main id="main" class="main" layout:fragment="main">
+        <!-- Content -->
+        <section class="container">
+            <div class="d-flex justify-content-between align-items-center mt-3 px-3 bg-dark">
+                <h1 class="fw-bold text-center mt-3" style="color: white;">List of Assignment</h1>
+                <button
+        type="button"
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-target="#create"
+      >
+        Add Assignment
+      </button>
+
+            </div>
+
+            <!-- Table -->
+            <table id="assignment-table" class="table mt-3 table-striped table-hover text-center table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="col-1 text-center">No</th>
+                        <th class="col-1 text-center">Title</th>
+                        <th class="col-4 text-center">Nama File</th>
+                        <th class="col-2 text-center">Deadline</th>
+                        <th class="col-2 text-center">Pembuat</th>
+                        <th class="col-6 text-center">Action</th>
+                    </tr>
+                </thead>
+
+            </table>
+
+            <!-- Modal Detail -->
+            <div class="modal fade" id="detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="detailLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 fw-bold" id="detailLabel">
+                                Detail Assignment
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="detail-title" class="form-label fw-bold">Title</label>
+                                <input type="text" id="detail-title" class="form-control" disabled />
+                            </div>
+                            <div class="mb-3">
+                                <label for="detail-file" class="form-label fw-bold">File</label>
+                                <input type="text" id="detail-file" class="form-control" disabled />
+                            </div>
+                            <div class="mb-3">
+                                <label for="detail-deadline" class="form-label fw-bold">Deadline</label>
+                                <input type="date" id="detail-deadline" class="form-select" disabled />
+                            </div>
+                            <div class="mb-3">
+                                <label for="detail-lecture" class="form-label fw-bold">Lecture</label>
+                                <input type="text" id="detail-lecture" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Create -->
+            <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="createLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 fw-bold" id="createLabel">
+                                Create Assignment
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="create-title" class="form-label fw-bold">Title</label>
+                                <input type="text" id="create-title" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="create-file" class="form-label fw-bold">File Name</label>
+                                <input type="text" id="create-file" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="create-deadline" class="form-label fw-bold">Deadline</label>
+                                <input type="date" id="create-deadline" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button class="btn btn-success" onclick="createAssignment()">
+                                Create
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Update -->
+            <div class="modal fade" id="update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="updateLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 fw-bold" id="updateLabel">
+                                Update Assignment
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="hidden" id="update-id" class="form-control" />
+                                <label for="update-title" class="form-label fw-bold">Title</label>
+                                <input type="text" id="update-title" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="update-file" class="form-label fw-bold">File Name</label>
+                                <input type="text" id="update-file" class="form-select"  />
+                            </div>
+<!--                            <div class="mb-3">-->
+<!--                                <label for="update-lecture" class="form-label fw-bold">Update Lecture</label>-->
+                                <input type="text" id="update-lecture" class="form-select"  readonly hidden/>
+                                <input type="text" id="assignment-id" class="form-select"  readonly hidden/>
+<!--                            </div>-->
+                            <div class="mb-3">
+                                <label for="update-deadline" class="form-label fw-bold">Deadline</label>
+                                <input type="date" id="update-deadline" class="form-select"  />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button class="btn btn-success" onclick="updateAssignment()">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JS Local -->
+    <div layout:fragment="script">
+        <script th:src="@{/js/Assignment.js}"></script>
+    </div>
+</body>
+
+</html>

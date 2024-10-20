@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin}">
+
+<head>
+    <title>Register User</title>
+</head>
+
+<body>
+    <main id="main" class="main" layout:fragment="main">
+        <div class="Register">
+            <form th:action="@{/register}" th:method="POST" th:object="${userRequest}"></form> 
+            <div class="mb-3">
+                <label for="create-name" class="form-label fw-bold">Name</label>
+                <input type="text" id="create-name" class="form-control" required/>
+            </div>
+            <div class="mb-3">
+                <label for="create-email" class="form-label fw-bold">Email</label>
+                <input type="text" id="create-email" class="form-control" required/>
+            </div>
+            <div class="mb-3">
+                <label for="create-phone" class="form-label fw-bold">phone</label>
+                <input type="text" id="create-phone" class="form-control" required/>
+            </div>
+            <div class="mb-3">
+                <label for="create-username" class="form-label fw-bold">username</label>
+                <input type="text" id="create-username" class="form-control" required/>
+            </div>
+            <div class="mb-3">
+                <label for="create-password" class="form-label fw-bold">password</label>
+                <input type="password" id="create-password" class="form-control" required/>
+            </div>
+            <div class="mb-3">
+                <label for="create-role" class="form-label fw-bold">role</label>
+                <select id="create-role" class="form-select"></select>
+            </div>
+            <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#detail"
+                onclick="register()"
+            >
+                Register
+            </button>
+        </div>
+    </main>
+
+    <div layout:fragment="script">
+        <script th:src="@{/js/Register.js}"></script>
+    </div>
+</body>
+
+</html>
